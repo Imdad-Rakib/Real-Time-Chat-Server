@@ -5,20 +5,10 @@
   "description": "A real time chat application",
   "main": "index.js",
   "scripts": {
-    "start": "SET \"NODE_ENV=development\" && nodemon app.mjs",
-    "production": "SET \"NODE_ENV=production\" && node app.mjs",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RakibQadri/Chat-App.git"
+    "start": "NODE_ENV=production node app.mjs"
   },
   "author": "Muhammad Rakib",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/RakibQadri/Chat-App/issues"
-  },
-  "homepage": "https://github.com/RakibQadri/Chat-App#readme",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
