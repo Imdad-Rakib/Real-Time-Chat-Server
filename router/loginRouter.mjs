@@ -2,18 +2,14 @@
 import express from "express";
 
 // internal imports
-import { getLogin } from "../controller/loginController.mjs";
+
 import { login, logout } from "../controller/loginController.mjs";
 
-import { redirectLoggedIn } from "../middleware/common/checkLogin.mjs";
-const loginRouter = express.Router();
 import path from 'path';
 import { fileURLToPath } from "url";
-//set page title
-const page_title = 'Login'
 
-// login page
-// loginRouter.get('/', decorateHtmlResponse(page_title), redirectLoggedIn, getLogin);
+const loginRouter = express.Router();
+
 
 //process 
 const __filename = fileURLToPath(import.meta.url);

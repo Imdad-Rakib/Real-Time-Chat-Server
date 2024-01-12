@@ -13,10 +13,6 @@ const peopleSchema = Schema(
             trim: true,
             lowercase: true,
         },
-        // mobile: {
-        //     type: String,
-        //     required: true,
-        // },
         password: {
             type: String,
             required: true,

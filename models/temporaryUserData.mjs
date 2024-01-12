@@ -13,10 +13,6 @@ const EmailValidationSchema = Schema(
             trim: true,
             lowercase: true,
         },
-        // mobile: {
-        //     type: String,
-        //     required: true,
-        // },
         password: {
             type: String,
             required: true,
@@ -25,14 +21,6 @@ const EmailValidationSchema = Schema(
             type: String,
             required: true,
         }
-        // avatar: {
-        //     type: String,
-        // },
-        // role: {
-        //     type: String,
-        //     enum: ["admin", "user"],
-        //     default: "user",
-        // },
     },
     {
         timestamps: true,

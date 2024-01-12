@@ -9,22 +9,10 @@ const PasswordResetSchema
             trim: true,
             lowercase: true,
         },
-        // mobile: {
-        //     type: String,
-        //     required: true,
-        // },
         OTP: {
             type: String,
             required: true,
         }
-        // avatar: {
-        //     type: String,
-        // },
-        // role: {
-        //     type: String,
-        //     enum: ["admin", "user"],
-        //     default: "user",
-        // },
     },
     {
         timestamps: true,
@@ -37,4 +25,3 @@ const PasswordResetToken
 );
 export { PasswordResetToken };
 
-//title, obj, desc, tech, conc 

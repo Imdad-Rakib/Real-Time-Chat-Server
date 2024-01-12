@@ -35,9 +35,6 @@ const conversationSchema = Schema(
             type: Boolean,
         }
     },
-    // {
-    //     timestamps: true,
-    // }
 );
 
 const Conversation = model("Conversation", conversationSchema);

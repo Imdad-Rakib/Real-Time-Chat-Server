@@ -35,26 +35,6 @@ async function searchUser(req, res, next){
         )
         .select('name email')
         users = users.filter((user) => user.email !== req.body.email);
-        // let response  = await Promise.all(users.map(async (user) =>{
-        //     let isFriend = await Conversation.find({
-        //         $or: [
-        //             {
-        //                 creator: req.body.email,
-        //                 participant: user.email
-        //             },
-        //             {
-        //                 creator: user.email,
-        //                 participant: req.body.email
-        //             }
-        //         ]
-        //     })
-        //     let data = {
-        //         name: user.name,
-        //         email: user.email,
-        //         // state: isFriend.length ? 'person' : 'person-add',
-        //     }
-        //     return data
-        // }))
         res.json({
             users
         })
@@ -123,7 +103,6 @@ async function updatePassword(req, res, next){
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
             user.password = hashedPassword;
             user = await user.save();
-            console.log('new password saved successfully')
             res.status(200).json({
                 sucesss: true
             })
@@ -140,23 +119,6 @@ async function updatePassword(req, res, next){
         })
     }
 }
-// async function resetPassword(req, res, next){
-//     try{
-//         let token = await PasswordResetToken.findOne({
-//             token: req.params.token
-//         })
-//         if(token){
-//             res.redirect(`http://localhost:${process.env.CLIENT_PORT}/resetpassword`)
-//         }
-//         else{
-//             res.redirect(`http://localhost:${process.env.CLIENT_PORT}/blank`)
-//         }
-//     }catch(err){
-//         res.status(500).json({
-//             error: 'An error occured. Please try again'
-//         })
-//     }
-// }
 
 function generateOTP() {
     const digits = '0123456789';
@@ -243,7 +205,6 @@ async function processEmail(req, res, next) {
         })
     }
 }
-// addUser
 async function addUser(req, res, next) {
     try{
         let user = await TemporaryUserData.findOne({
@@ -262,7 +223,6 @@ async function addUser(req, res, next) {
             })
             try{
                 const result = await newUser.save();
-                console.log('User added successfully')
                 res.status(200).json({
                     success: true
                 })
@@ -286,37 +246,6 @@ async function addUser(req, res, next) {
             error: 'An error occured. Please try again'
         })
     }
-    // save user or send error
-}
-// remove user
-async function removeUser(req, res, next) {
-    try {
-        const user = await User.findByIdAndDelete({
-            _id: req.params.id,
-        });
-
-        // remove user avatar if any
-        if (user.avatar) {
-            unlink(
-                path.join(__dirname, `/../public/uploads/avatars/${user.avatar}`),
-                (err) => {
-                    if (err) console.log(err);
-                }
-            );
-        }
-
-        res.status(200).json({
-            message: "User was removed successfully!",
-        });
-    } catch (err) {
-        res.status(500).json({
-            errors: {
-                common: {
-                    msg: "Could not delete the user!",
-                },
-            },
-        });
-    }
 }
 async function activeChats(req, res, next){
     const {email} = req.body;
@@ -335,17 +264,15 @@ async function activeChats(req, res, next){
                 obj.last_room = item.last_room;
                 obj.id = item._id;
 
-                // const client = await ActiveClients.findOne({
-                //     email: obj.email,
-                // });
-                // return client ? obj : null;
-                return obj;
+                const client = await ActiveClients.findOne({
+                    email: obj.email,
+                });
+                return client ? obj : null;
             })
         )
         const filteredActiveChats = activeChats.filter((item) => item !== null);
         res.json({
-            // activeChats
-            filteredActiveChats,
+            filteredActiveChats
         })
     } catch (err) {
         res.json({
@@ -354,4 +281,4 @@ async function activeChats(req, res, next){
     }
 }
 
-export { addUser, getUsers, removeUser, checkEmail, processEmail, passwordRecovery, updatePassword, verifyPassOtp, searchUser, activeChats }
+export { addUser, getUsers,  checkEmail, processEmail, passwordRecovery, updatePassword, verifyPassOtp, searchUser, activeChats }

@@ -163,7 +163,6 @@ async function destroyMsg(conversation_id, room, expiry){
         email: x.participant
     })
     if (client1){
-        console.log('sending');
         io.to(client1.connectionId).emit('Messages_Expired', {
             conversation_id,
             room
@@ -198,7 +197,6 @@ async function setDisappearingMsg(req, res, next){
                 room,
             })
         }
-        console.log('activated');
         res.status(200).json({
             success: true
         })

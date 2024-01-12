@@ -10,13 +10,6 @@ async function addClient(email, connectionId){
             connectionId
         })
         await newClient.save();
-        // let unsentMsg = await Message.find({
-        //     receiver: email,
-        //     sent: false,
-        // });
-        // if(unsentMsg.length){
-            
-        // }
     }
     catch(err){
         console.log(err)

@@ -40,7 +40,6 @@ async function modifyConversation(req, res, next){
     }
 }
 async function newRoom(req, res, next){
-    // client must send conv_id, room name, creator'name;
     try{
         const {conversation_id, name, creator} = req.body;
             let room = await Room.findOne({
@@ -101,7 +100,7 @@ async function getConversationInfo(req, res, next){
             conversation,
         })
     }catch(err){
-        console.log('here ', err);
+        console.log(err);
         res.json({
             error: 'Internal server error'
         })

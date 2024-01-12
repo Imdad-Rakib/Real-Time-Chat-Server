@@ -10,8 +10,6 @@ import cors from 'cors'
 import { createServer } from 'http';
 
 // internal import
-import { Message } from './models/message.mjs';
-import { Conversation } from './models/conversation.mjs';
 import { notFoundHandler, errorHandler } from './middleware/common/errorHandler.mjs';
 import { loginRouter} from './router/loginRouter.mjs';
 import { usersRouter } from './router/usersRouter.mjs';
@@ -28,9 +26,7 @@ const app = express();
 const server = createServer(app);
 
 
-// global.io = io;
 
-// database connection
 mongoose
     .connect(process.env.MONGO_CONNECTION_STRING, {
         useNewUrlParser: true,
@@ -40,23 +36,12 @@ mongoose
     .catch(err => console.log(err));
 
 
-// await Message.deleteMany(
-//     {},
-// )
-// io.on('connection', (socket) => {
-//     console.log('a user connected', socket.id);
-//     socket.on('disconnect', () => {
-//         console.log('a user disconnected');
-//     })
-// })
-
 // req parser
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(
     cors({ 
-        // origin: 'http://localhost:5173',
         origin: '*',
         credentials: true 
     })
@@ -67,12 +52,9 @@ const io = new Server(server, {
     timeout: 10000
 });
 io.on('connection', (socket) => {
-    console.log('new client connected');
     handleSocketConnections(socket);
 })
 
-// set view engine
-// app.set('view engine', 'ejs'); 
 
 //set static folder
 app.use(express.static(path.join(__dirname, 'public')));
