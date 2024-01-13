@@ -233,8 +233,17 @@ async function unsetDisappearingMsg(req, res, next){
 }
 async function deleteMsg(req, res, next) {
     try{
-        console.log(req.params.id);
-        await Message.findByIdAndDelete(req.params.id);
+        await Message.findByIdAndDelete(req.body.msg_id);
+        let client = await ActiveClients.findOne({
+            email: req.body.receiver
+        })
+        if(client){
+            io.to(client.connectionId).emit('delete_msg', {
+                id: req.body.msg_id,
+                sender: req.body.sender,
+                room: req.body.room
+            })
+        }
         res.status(204).json({
             success: true
         })

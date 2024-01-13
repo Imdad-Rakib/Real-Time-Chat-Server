@@ -12,7 +12,7 @@ inboxRouter.post('/privateMessage', fileUpload, handlePrivateMsg)
 inboxRouter.get('/download/:fileName', singleDownloader);
 inboxRouter.post('/setDisappearingMsg', setDisappearingMsg);
 inboxRouter.post('/unsetDisappearingMsg', unsetDisappearingMsg);
-inboxRouter.delete('/deleteMsg/:id', deleteMsg);
+inboxRouter.post('/deleteMsg', deleteMsg);
 
 
 export { inboxRouter }
