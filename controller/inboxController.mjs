@@ -210,18 +210,39 @@ async function setDisappearingMsg(req, res, next){
 }
 async function unsetDisappearingMsg(req, res, next){
     const {conversation_id, room, receiver, sender} = req.body;
-    await DisappearingMsg.deleteMany({
-        conversation_id, 
-        room
-    })
-    let client = ActiveClients.findOne(receiver);
-    io.to(client.connectionId).emit('Disappearing_Messages_Deactivated',
-    {
-        deactivatedBy: sender,
-        room
-    })
-    res.status(200).json({
-        success: true
-    })
+    try{
+        await DisappearingMsg.deleteMany({
+            conversation_id, 
+            room
+        })
+        let client = ActiveClients.findOne(receiver);
+        io.to(client.connectionId).emit('Disappearing_Messages_Deactivated',
+        {
+            deactivatedBy: sender,
+            room
+        })
+        res.status(200).json({
+            success: true
+        })
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            error: 'Internal server error'
+        })
+    }
 }
-export {getMessage, handlePrivateMsg, singleDownloader, setDisappearingMsg, unsetDisappearingMsg}
+async function deleteMsg(req, res, next) {
+    try{
+        console.log(req.params.id);
+        await Message.findByIdAndDelete(req.params.id);
+        res.status(204).json({
+            success: true
+        })
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            error: 'Internal server error'
+        })
+    }
+}
+export {getMessage, handlePrivateMsg, singleDownloader, setDisappearingMsg, unsetDisappearingMsg, deleteMsg};
