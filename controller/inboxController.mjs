@@ -23,7 +23,7 @@ async function getMessage(req, res, next){
         let messages = await Message.find({
             room_id: room._id
         })
-        .select('-_id sender receiver text createdAt file')
+        .select('_id sender receiver text createdAt file')
         .sort({createdAt: -1});
         let x = await DisappearingMsg.findOne({
             conversation_id,
