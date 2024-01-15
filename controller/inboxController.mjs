@@ -124,7 +124,7 @@ async function singleDownloader(req, res, next){
         }
     })
 }
-async function destroyMsg(conversation_id, room, expiry){
+async function destroyMsg(conversation_id, room_id, room, expiry){
     let x = await DisappearingMsg.findOne({
         conversation_id,
         room
@@ -134,16 +134,12 @@ async function destroyMsg(conversation_id, room, expiry){
         conversation_id,
         room
     })
-    x = await Room.findOne({
-        conversation_id,
-        name: room
-    })
     await Message.deleteMany({
-        room_id: x._id,
+        room_id,
         createdAt: {$gte: new Date(Date.now() - expiry)}
     })
     let message = await Message.find({
-        room_id: x._id
+        room_id
     })
     .select('text')
     .sort({ createdAt: -1 })
@@ -178,17 +174,23 @@ async function destroyMsg(conversation_id, room, expiry){
 async function setDisappearingMsg(req, res, next){
     const {conversation_id, room, expiry, receiver, sender} = req.body;
     try{
+        let x = await Room.findOne({
+            conversation_id,
+            name: room
+        })
+        // const msg = new Message({ room_id: x._id, sender, receiver, disappear_time: expiry });
+        // await msg.save();
         let disappearingMsg = new DisappearingMsg({
             conversation_id,
             room,
             expiry: new Date(Date.now() + expiry)
         })
-        let x = await disappearingMsg.save();
+        await disappearingMsg.save();
         setTimeout(() => {
-            destroyMsg(conversation_id, room, expiry)
+            destroyMsg(conversation_id, x._id, room, expiry)
         }, expiry);
         let client = await ActiveClients.findOne({
-            receiver
+            email: receiver
         })
         if(client){
             io.to(client.connectionId).emit('Disappearing_Messages_Activated', {

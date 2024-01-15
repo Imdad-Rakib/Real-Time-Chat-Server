@@ -18,6 +18,10 @@ const messageSchema = Schema(
         receiver: {
            type: String
         },
+        // disappear_time:{
+        //     type: Number,
+        //     default: 0
+        // },
         sent:{
             type: Boolean,
         }
