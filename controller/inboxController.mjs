@@ -193,7 +193,7 @@ async function setDisappearingMsg(req, res, next){
             email: receiver
         })
         if(client){
-            io.to(client.connectionId).emit('Disappearing_Messages_Activated', receiver, room, msg)
+            io.to(client.connectionId).emit('Disappearing_Messages_Activated', sender, room, msg)
         }
         res.status(200).json({
             success: true
