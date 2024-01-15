@@ -18,10 +18,18 @@ const messageSchema = Schema(
         receiver: {
            type: String
         },
-        // disappear_time:{
-        //     type: Number,
-        //     default: 0
-        // },
+        set_disappear:{
+            type: Boolean,
+            default: false
+        },
+        unset_disappear:{
+            type: Boolean,
+            default: false
+        },
+        expiry:{
+            type: Number,
+            default: 0
+        },
         sent:{
             type: Boolean,
         }

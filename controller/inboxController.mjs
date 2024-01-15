@@ -178,8 +178,8 @@ async function setDisappearingMsg(req, res, next){
             conversation_id,
             name: room
         })
-        // const msg = new Message({ room_id: x._id, sender, receiver, disappear_time: expiry });
-        // await msg.save();
+        let msg = new Message({ room_id: x._id, sender, receiver, disappear_time: expiry, set_disappear: true });
+        msg = await msg.save();
         let disappearingMsg = new DisappearingMsg({
             conversation_id,
             room,
@@ -193,11 +193,7 @@ async function setDisappearingMsg(req, res, next){
             email: receiver
         })
         if(client){
-            io.to(client.connectionId).emit('Disappearing_Messages_Activated', {
-                expiry,
-                activatedBy: sender,
-                room,
-            })
+            io.to(client.connectionId).emit('Disappearing_Messages_Activated', receiver, room, msg)
         }
         res.status(200).json({
             success: true
