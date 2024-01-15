@@ -178,7 +178,7 @@ async function setDisappearingMsg(req, res, next){
             conversation_id,
             name: room
         })
-        let msg = new Message({ room_id: x._id, sender, receiver, disappear_time: expiry, set_disappear: true });
+        let msg = new Message({ room_id: x._id, sender, receiver, expiry, set_disappear: true });
         msg = await msg.save();
         let disappearingMsg = new DisappearingMsg({
             conversation_id,
