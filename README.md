@@ -1,4 +1,5 @@
 # Project Title
+Real Time Chat Application
 
 ![Current Version](https://img.shields.io/badge/version-v0.1-blue)
 ![GitHub contributors](https://img.shields.io/github/contributors/madhur-taneja/README-Template)
