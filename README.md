@@ -19,13 +19,7 @@ Hey folks! Welcome to our Real-Time Chat App, where chatting just got a whole lo
 
 ## Getting Started
 
-The project might have multiple branches: `master`, `development`, etc. which can be explained here
-
-* `master` contains aggregate code of all branches
-* `development` contains code under development
-
-Other details that need to be given while starting out with the project can be provided in this section. A project structure like below can also be included for the big projects:
-
+Project Structure:
 ```
 	Server
 	├── controller
@@ -70,10 +64,10 @@ Other details that need to be given while starting out with the project can be p
 
 ### Tools Required
 
-All tools required go here. You would require the following tools to develop and run the project:
+You must have the followings installed on your machine
 
 * A text editor or an IDE (like IntelliJ)
-* Mention the other tools required for the project 
+* NodeJS 
 
 ### Installation
 
