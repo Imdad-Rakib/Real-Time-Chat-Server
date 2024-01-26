@@ -75,7 +75,7 @@ You must have the followings installed on your machine
 1. Navigate to your prefered directory and type the following in the terminal:
    
    ```
-   [git clone -b dev https://github.com/Imdad-Rakib/Time_Tracker_Server.git](https://github.com/Imdad-Rakib/Real-Time-Chat-Server.git)
+   https://github.com/Imdad-Rakib/Real-Time-Chat-Server.git
    ```
 
 2. Type the following to install all the dependencies used here:
@@ -83,7 +83,18 @@ You must have the followings installed on your machine
    ```
    npm install
    ```
-
+3. Create a .env file and add the following variables. Set the values according to your configuration
+   ```
+   APP_NAME = "<name>"
+   MONGO_CONNECTION_STRING = "<your_connection_string>"
+   COOKIE_SECRET = <your_cookie_secret> 
+   JWT_SECRET = <your_jwt_secret> 
+   JWT_EXPIRY= <expiry_time>
+   COOKIE_NAME= <your_cookie_name>
+   PORT = <port_number> 
+   EMAIL = "<your_email>"
+   KEY = "<your_app_password_for_google_account>" 
+   ```
 
 ## Deployment
 
