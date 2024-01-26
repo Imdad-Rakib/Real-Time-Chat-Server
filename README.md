@@ -60,6 +60,7 @@ Project Structure:
         ├── .gitignore
         ├── README.md
         ├── app.mjs
+        ├── package.json
 ```
 
 ### Tools Required
@@ -71,12 +72,18 @@ You must have the followings installed on your machine
 
 ### Installation
 
-All installation steps go here.
+1. Navigate to your prefered directory and type the following in the terminal:
+   
+   ```
+   [git clone -b dev https://github.com/Imdad-Rakib/Time_Tracker_Server.git](https://github.com/Imdad-Rakib/Real-Time-Chat-Server.git)
+   ```
 
-* Installing a particular tool
-  * Steps to complete it
-  
-* Installing another tool
+2. Type the following to install all the dependencies used here:
+
+   ```
+   npm install
+   ```
+
 
 ## Deployment
 
