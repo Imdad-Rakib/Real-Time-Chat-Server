@@ -27,23 +27,45 @@ The project might have multiple branches: `master`, `development`, etc. which ca
 Other details that need to be given while starting out with the project can be provided in this section. A project structure like below can also be included for the big projects:
 
 ```
-	project-title
-	├── README.md
-	├── package.json
-	├── .gitignore
+	Server
+	├── controller
+	│    ├── conversationController
+        │    ├── inboxController
+        │    ├── loginController
+        │    ├── userController 		
+	├── middleware
+        │    ├── common
+        │    │    ├── errorHandler
+        │    ├── users
+        │        ├── fileUpload
+	├── models
+        │    ├── disappearingMsg
+        │    ├── activeClients
+        │    ├── chatRequest
+        │    ├── conversations
+        │    ├── message
+        │    ├── passwordResetToken
+        │    ├── people
+        │    ├── room
+        │    ├── temporaryUserData
 	├── public
-	│   ├── favicon.ico
-	│   ├── index.html
-	│   └── manifest.json
-	└── src
-		├── App.css
-		├── App.js
-		├── App.test.js
-		├── index.css
-		├── index.js
-		├── logo.svg
-		└── serviceWorker.js
-		└── setupTests.js
+	│   ├── uploads
+	│   	├── avatars
+	│       ├── files
+	└── router
+        │    ├── conversationRouter
+        │    ├── inboxRouter
+        │    ├── loginRouter
+        │    ├── usersRouter
+	├── socketIO
+        │    ├── eventHandler
+        │    ├── eventListener
+	├── utilities
+        │    ├── nodemailerSetup
+        │    ├── singleUploader
+        ├── .gitignore
+        ├── README.md
+        ├── app.mjs
 ```
 
 ### Tools Required
